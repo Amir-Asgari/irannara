@@ -1,3 +1,13 @@
+.main-nav{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    a {
+        &.active {
+            color: blue;
+        }
+    }
+}
 .toolbar-item-spacer {
     flex: 1 1 auto;
 }
