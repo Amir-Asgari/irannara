@@ -1,3 +1,5 @@
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule, MatDivider, MatDividerModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -27,7 +28,6 @@ import { MatMenuModule} from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     FormsModule,
-    MatButtonModule,
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
@@ -36,6 +36,7 @@ import { MatMenuModule} from '@angular/material/menu';
     MatTooltipModule,
     MatExpansionModule,
     MatMenuModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([])
   ],
   providers: [],
