@@ -9,6 +9,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 
 
 
@@ -18,6 +19,8 @@ import { FormsModule } from '@angular/forms';
     // HomeComponent,
     // AboutComponent,
     // ContactComponent
+  
+    NotAuthorizedComponent
   ],
   imports: [
     CommonModule,

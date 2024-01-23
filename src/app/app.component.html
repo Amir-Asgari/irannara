@@ -6,7 +6,13 @@
         <a mat-list-item routerLinkActive="active" routerLink="/home">Home</a>
         <a mat-list-item routerLinkActive="active" routerLink="/about">About</a>
         <a mat-list-item routerLinkActive="active" routerLink="/contact">Contact</a>
+        <a mat-list-item routerLinkActive="active" routerLink="/admin">Admin</a>
         <a mat-list-item routerLinkActive="active" routerLink="/admin">Sign In</a>
+        <div>
+            <button *ngIf="!isLoggedIn" >logIn</button>
+            <button *ngIf="isLoggedIn" >logOut</button>
+        
+        </div>
       </mat-nav-list>
     <span class="toolbar-item-spacer"></span>
     <button mat-icon-button matTooltip="Like">
