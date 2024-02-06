@@ -16,18 +16,18 @@ import { RouterModule, Routes }   from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule} from '@angular/material/menu';
 import { HomeComponent } from './core/home/home.component';
-import { AdminComponent } from './core/admin/admin.component';
 import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SigninComponent } from './core/signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

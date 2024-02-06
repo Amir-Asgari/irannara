@@ -20,7 +20,7 @@ export class NotAuthorizedComponent implements OnInit {
       this.countdown--;
       if (this.countdown <= 0) {
         clearInterval(interval);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/signin']);
       }
     }, 1000);
   }

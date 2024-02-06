@@ -6,11 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class SigninComponent implements OnInit {
   username: string = '';
   password: string = '';
   responseData: string | undefined;

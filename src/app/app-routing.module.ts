@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/home/home.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { AboutComponent } from './core/about/about.component';
-import { AdminComponent } from './core/admin/admin.component';
 import { NotAuthorizedComponent } from './core/not-authorized/not-authorized.component';
 import { AuthGuard } from './auth.guard';
+import { SigninComponent } from './core/signin/signin.component';
 
  const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'admin', component: AdminComponent},
+  { path: 'signin', component: SigninComponent},
   { path: 'home', component: HomeComponent},
   { path: 'contact', component: ContactComponent, canActivate:[AuthGuard]},
   { path: 'about', component: AboutComponent},
