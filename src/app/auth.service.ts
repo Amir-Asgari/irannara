@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private loggedIn: boolean = false;
 
-  public isAuthenticated() {
+  public isAuthenticated(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.loggedIn);
@@ -16,13 +16,20 @@ export class AuthService {
 
   public checkAuth(){
     return this.loggedIn
+    console.log('checkAuth');
+    console.log(this.checkAuth);
+    
   }
 
   public login() {
     this.loggedIn = true;
+    console.log('login');
+    
   }
 
   public logout() {
     this.loggedIn = false;
+    console.log('logout');
+    
   }
 }
