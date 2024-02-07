@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
   username: string = '';
@@ -25,17 +25,17 @@ export class SigninComponent implements OnInit {
         password: this.password,
       })
       .subscribe(
-        ({ title, id, body , password , username}: any) => {
+        ({ title, id, body, password, username }: any) => {
           this.responseData = title;
           this.responseBody = body;
           this.responseId = id;
-          this.password= password;
-          this.username= username;
+          this.password = password;
+          this.username = username;
 
           console.log(this.responseData);
           console.log(this.username);
         },
-        
+
         (error) => {
           console.log('Error', error);
         }
