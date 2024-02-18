@@ -15,10 +15,24 @@
           <div class="form-title">ورود</div>
           <div class="login">
             <div class="login-input">
-              <input [(ngModel)]="username" placeholder="نام کاربری" />
-              <input [(ngModel)]="password" placeholder="رمز" />
+              <!-- <input [(ngModel)]="username" placeholder="نام کاربری" /> -->
+              <!-- <input [(ngModel)]="password" placeholder="رمز" /> -->
+              <div class="example-container">
+                <mat-form-field>
+                  <mat-label>نام کاربری</mat-label>
+                  <input matInput placeholder="yourName" [formControl]="username" required>
+                    <mat-error *ngIf="username.invalid">{{getErrorUserNameMessage()}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="example-container">
+                <mat-form-field>
+                  <mat-label>رمز عبور</mat-label>
+                  <input matInput placeholder="pat@example.com" [formControl]="password" required>
+                    <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+                </mat-form-field>
+              </div>
               <button class="button-enter" (click)="logincheck()">ورود</button>
-              <p>Title :{{responseData}} </p>
+              <!-- <p>Title :{{responseData}} </p> -->
               <div class="question-p">
                 <p>
                   حساب کاربری ندارید ؟
