@@ -12,7 +12,7 @@
       </div>
       <div class="withBanner-content">
         <div class="banner-box">
-          <div class="form-title">ورود</div>
+          <mat-label class="form-title">ورود</mat-label>
           <div class="login">
             <div class="login-input">
               <!-- <input [(ngModel)]="username" placeholder="نام کاربری" /> -->
@@ -31,7 +31,7 @@
                     <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
                 </mat-form-field>
               </div>
-              <button class="button-enter" (click)="logincheck()">ورود</button>
+              <button mat-raised-button class="button-enter" (click)="logincheck()">ورود</button>
               <!-- <p>Title :{{responseData}} </p> -->
               <div class="question-p">
                 <p>
@@ -54,12 +54,12 @@
               </div>
               <div class="ssoButtons">
                 <div class="ar-icon">
-                  <div class="ar-icon-img">
-                    <img src="../../assets/google.png" width="30" height="30" />
-                  </div>
-                  <div class="ar-icon-img">
+                  <button mat-raised-button class="ar-icon-img">
+                      <img src="../../assets/google.png" width="30" height="30" />
+                  </button>
+                  <button mat-raised-button class="ar-icon-img">
                     <img src="../../assets/pod.png" width="30" height="30" />
-                  </div>
+                  </button>
                 </div>
               </div>
               <div class="terms">
