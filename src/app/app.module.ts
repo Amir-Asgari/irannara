@@ -18,12 +18,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { HomeComponent } from './core/home/home.component';
 import { AboutComponent } from './core/about/about.component';
 import { AdminComponent } from './core/admin/admin.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SigninComponent } from './core/signin/signin.component';
 import { CoreRoutingModule } from './core/core-routing.module';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LoginInterceptor } from './share/service/auth/login.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserAnimationsModule,
     RouterModule.forRoot([]),
   ],
-  providers: [],
+  providers: [
+    {provide : HTTP_INTERCEPTORS, useClass: LoginInterceptor , multi: true}
+  ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}
