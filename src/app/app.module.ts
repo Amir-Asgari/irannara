@@ -25,6 +25,7 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginInterceptor } from './share/service/auth/login.interceptor';
+import { HeaderInterceptor } from './share/service/auth/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { LoginInterceptor } from './share/service/auth/login.interceptor';
     RouterModule.forRoot([]),
   ],
   providers: [
-    {provide : HTTP_INTERCEPTORS, useClass: LoginInterceptor , multi: true}
+    {provide : HTTP_INTERCEPTORS, useClass: LoginInterceptor , multi: true},
+    {provide : HTTP_INTERCEPTORS, useClass: HeaderInterceptor , multi: true}
   ],
   bootstrap: [AppComponent],
   

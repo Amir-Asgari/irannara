@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './share/service/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,22 @@ export class AppComponent implements OnInit {
   title = 'Angular11App';
 
   public isLoggedIn: boolean = true;
-  constructor(private authService: AuthService) {}
+
+  
+  constructor(private authService: AuthService , private router:Router) {}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.checkAuth();
+
+    if (this.authService.loggedIn) {
+      const accessToken = this.authService.getAccessToken();
+      if (accessToken) {
+        this.router.navigate(['/admin']);
+      }
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
   }
   public loginUser() {
     this.authService.login();
@@ -26,4 +40,6 @@ export class AppComponent implements OnInit {
     console.log('user loged in', this.isLoggedIn);
 
   }
+
+  
 }

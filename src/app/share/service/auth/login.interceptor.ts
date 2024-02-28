@@ -7,13 +7,21 @@ import {
   HttpEvent,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private authService: AuthService) {}
+  private tokenChangedSubscription: Subscription;
+
+  constructor(private router: Router, private authService: AuthService) {
+    this.tokenChangedSubscription = this.authService.tokenChanged.subscribe(
+      () => {
+        this.checkTokens();
+      }
+    );
+  }
 
   intercept(
     httpRequest: HttpRequest<any>,
@@ -21,14 +29,21 @@ export class LoginInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(httpRequest).pipe(
       tap((event) => {
+        
         if (event instanceof HttpResponse) {
+          // const accessToken = event.body.result.access_token;
+          // const refreshToken = event.body.result.refresh_token;
+          // this.authService.getAccessToken(accessToken);
+
           console.log(
             'status:',
             event.status,
             ', message:',
             event.body.message,
             ', result:',
-            event.body.result
+            event.body.result,
+            ', token:',
+            event.body.result.access_token
           );
         }
       }),
@@ -38,18 +53,48 @@ export class LoginInterceptor implements HttpInterceptor {
       }),
       tap((event) => {
         if (event instanceof HttpResponse) {
-          this.authService.login();
+          const accessToken = event.body.result.access_token;
+          const refreshToken = event.body.result.refresh_token;
+          console.log(accessToken);
+          console.log(refreshToken);
+      
+          // if (accessToken) {
+            // this.authService.setAccessToken(accessToken);
+          // }
+          // if (refreshToken) {
+            // this.authService.setRefreshToken(refreshToken);
+          // }
         }
       }),
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           const responseData: any = event.body;
+          const accessToken = event.body.result.access_token;
+          const refreshToken = event.body.result.refresh_token;
           if (responseData && event.status === 200) {
+            this.authService.setAccessToken(accessToken);
+            this.authService.login();
             this.router.navigate(['/admin']);
           }
         }
-        return event; 
+        return event;
       })
     );
+  }
+
+  private checkTokens() {
+    const accessToken = this.authService.getAccessToken();
+    const refreshToken = this.authService.getRefreshToken();
+    console.log(accessToken);
+    console.log(refreshToken);
+
+    if (accessToken) {
+      this.authService.login();
+      this.router.navigate(['/admin']);
+    }
+  }
+
+  ngOnDestroy() {
+    this.tokenChangedSubscription.unsubscribe();
   }
 }
