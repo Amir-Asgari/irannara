@@ -17,15 +17,15 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.checkAuth();
 
-    if (this.authService.loggedIn) {
-      const accessToken = this.authService.getAccessToken();
-      if (accessToken) {
-        this.router.navigate(['/admin']);
-      }
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
+  //   if (this.authService.loggedIn) {
+  //     const accessToken = this.authService.getAccessToken();
+  //     if (accessToken) {
+  //       this.router.navigate(['/admin']);
+  //     }
+  //   } else {
+  //     this.router.navigate(['/login']);
+  //   }
+  // }
 
   }
   public loginUser() {
