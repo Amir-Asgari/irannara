@@ -5,7 +5,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class AuthService {
   public loggedIn: boolean = true;
-  public currentRefreshToken :any = null
+  public currentAccessToken :any = null
   public tokenChanged: EventEmitter<void> = new EventEmitter<void>();
 
   public isAuthenticated(): Promise<boolean> {
@@ -18,10 +18,12 @@ export class AuthService {
 
   public checkAuth(
     // currentRefreshToken: string | null
-    currentAccessToken: string | null
+    accessToken: string | null
   ) {
-    if (currentAccessToken ) {
-      this.currentRefreshToken=currentAccessToken
+    if (accessToken ) {
+      console.log(accessToken);
+      this.currentAccessToken=accessToken
+      console.log(this.currentAccessToken);
       this.loggedIn = true;
       this.login();
     }

@@ -65,8 +65,9 @@ export class LoginInterceptor implements HttpInterceptor {
           const responseData: any = event.body;
           const accessToken = event.body.result.access_token;
           const refreshToken = event.body.result.refresh_token;
-          if (refreshToken=== this.authService.currentRefreshToken && event.status === 200) {
+          if (accessToken ) {
             this.authService.setAccessToken(accessToken);
+            this.authService.setRefreshToken(refreshToken);
             this.authService.login();
             this.router.navigate(['/admin']);
           }else{

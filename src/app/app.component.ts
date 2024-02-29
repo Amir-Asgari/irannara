@@ -19,7 +19,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const currentAccessToken = localStorage.getItem('access_token');
     const currentRefreshToken = localStorage.getItem('refresh_token');
-     this.authService.checkAuth(currentAccessToken);
+    console.log('refresh token in app : ', currentRefreshToken);
+    console.log(this.authService.loggedIn);
+    
+    //  this.authService.checkAuth(currentAccessToken);
      this.authService.checkAuth(currentRefreshToken);
      this.isLoggedIn = this.authService.loggedIn
   }
@@ -39,12 +42,12 @@ export class AppComponent implements OnInit {
 //   }
 
   // }
-  // public loginUser() {
-  //   this.authService.login();
-  //   this.isLoggedIn=true;
-  //   console.log('user loged in', this.isLoggedIn);
+  public loginUser() {
+    this.authService.login();
+    this.isLoggedIn=true;
+    console.log('user loged in', this.isLoggedIn);
 
-  // }
+  }
   public logoutUser() {
     this.authService.logout();
     this.isLoggedIn=false;

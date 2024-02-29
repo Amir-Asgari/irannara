@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+    <button *ngIf="isLoggedIn" mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
         <mat-icon>menu</mat-icon>
     </button>
-    <mat-nav-list class="main-nav">
+    <mat-nav-list *ngIf="isLoggedIn"  class="main-nav">
         <a mat-list-item routerLinkActive="active" routerLink="/home">Home</a>
         <a mat-list-item routerLinkActive="active" routerLink="/about">About</a>
         <a mat-list-item routerLinkActive="active" routerLink="/admin">Admin</a>
         <!-- <a mat-list-item routerLinkActive="active" routerLink="/admin">Admin</a> -->
-        <a *ngIf="isLoggedIn" (click)="logoutUser()" mat-list-item routerLinkActive="active" routerLink="/signin">Sign out</a>
+        <a *ngIf="isLoggedIn" (click)="logoutUser()" mat-list-item  routerLink="/signin">Sign out</a>
  
       </mat-nav-list>
     <span class="toolbar-item-spacer"></span>
@@ -20,10 +20,10 @@
     <button mat-icon-button matTooltip="Notifications">
         <mat-icon>notifications</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
+    <button  mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
         <mat-icon>account_circle</mat-icon>
     </button>
-    <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
+    <mat-menu  #userAccountMenu [overlapTrigger]="false"  yPosition="below">
         <button mat-menu-item routerLink="#">
             <mat-icon>person</mat-icon><span>My Account</span>
         </button>
