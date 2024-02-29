@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'Angular11App';
 
-  public isLoggedIn: any = true;
+  public isLoggedIn: any = false;
 
   constructor(private authService: AuthService, private router: Router) {
     // this.isLoggedIn = this.authService.checkAuth();
@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     const currentRefreshToken = localStorage.getItem('refresh_token');
      this.authService.checkAuth(currentAccessToken);
      this.authService.checkAuth(currentRefreshToken);
+     this.isLoggedIn = this.authService.loggedIn
   }
 //   ngOnInit(): void {
 //     if (this.authService.loggedIn) {
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit {
   // }
   public logoutUser() {
     this.authService.logout();
-    this.isLoggedIn=true;
+    this.isLoggedIn=false;
     console.log('user loged in', this.isLoggedIn);
 
   }

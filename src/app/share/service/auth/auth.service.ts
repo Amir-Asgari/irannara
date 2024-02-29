@@ -17,11 +17,11 @@ export class AuthService {
   }
 
   public checkAuth(
-    currentRefreshToken: string | null
-    // currentAccessToken: string | null
+    // currentRefreshToken: string | null
+    currentAccessToken: string | null
   ) {
-    if (currentRefreshToken ) {
-      this.currentRefreshToken=currentRefreshToken
+    if (currentAccessToken ) {
+      this.currentRefreshToken=currentAccessToken
       this.loggedIn = true;
       this.login();
     }
