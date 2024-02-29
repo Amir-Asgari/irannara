@@ -4,7 +4,8 @@ import { EventEmitter, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  public loggedIn: boolean = false;
+  public loggedIn: boolean = true;
+  public currentRefreshToken :any = null
   public tokenChanged: EventEmitter<void> = new EventEmitter<void>();
 
   public isAuthenticated(): Promise<boolean> {
@@ -15,8 +16,15 @@ export class AuthService {
     });
   }
 
-  public checkAuth() {
-    return this.loggedIn;
+  public checkAuth(
+    currentRefreshToken: string | null
+    // currentAccessToken: string | null
+  ) {
+    if (currentRefreshToken ) {
+      this.currentRefreshToken=currentRefreshToken
+      this.loggedIn = true;
+      this.login();
+    }
   }
 
   public login() {
@@ -35,9 +43,9 @@ export class AuthService {
   }
 
   public getAccessToken(): string | null {
-    const token= localStorage.getItem('access_token');
+    const token = localStorage.getItem('access_token');
     console.log('Access token from localStorage:', token);
-    return token
+    return token;
   }
 
   public setRefreshToken(token: string) {
