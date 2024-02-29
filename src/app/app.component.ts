@@ -10,36 +10,45 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'Angular11App';
 
-  public isLoggedIn: boolean = true;
+  public isLoggedIn: any = false;
 
-  
-  constructor(private authService: AuthService , private router:Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    // this.isLoggedIn = this.authService.checkAuth();
+  }
+
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.checkAuth();
+    const currentAccessToken = localStorage.getItem('access_token');
+    const currentRefreshToken = localStorage.getItem('refresh_token');
+     this.authService.checkAuth(currentAccessToken);
+     this.authService.checkAuth(currentRefreshToken);
+     this.isLoggedIn = this.authService.loggedIn
+  }
+//   ngOnInit(): void {
+//     if (this.authService.loggedIn) {
+//       const accessToken = this.authService.getAccessToken();
+// console.log('accestoken in app' , accessToken);
 
-  //   if (this.authService.loggedIn) {
-  //     const accessToken = this.authService.getAccessToken();
-  //     if (accessToken) {
-  //       this.router.navigate(['/admin']);
-  //     }
-  //   } else {
-  //     this.router.navigate(['/login']);
-  //   }
+//       if (accessToken) {
+//         this.isLoggedIn = true;
+//         this.router.navigate(['/admin']);
+//       }
+//     } else {
+//       this.isLoggedIn = false;
+//       this.router.navigate(['/login']);
+//     }
+//   }
+
   // }
+  // public loginUser() {
+  //   this.authService.login();
+  //   this.isLoggedIn=true;
+  //   console.log('user loged in', this.isLoggedIn);
 
-  }
-  public loginUser() {
-    this.authService.login();
-    this.isLoggedIn=true;
-    console.log('user loged in', this.isLoggedIn);
-    
-  }
+  // }
   public logoutUser() {
     this.authService.logout();
     this.isLoggedIn=false;
     console.log('user loged in', this.isLoggedIn);
 
   }
-
-  
 }

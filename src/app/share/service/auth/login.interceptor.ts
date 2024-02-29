@@ -55,15 +55,9 @@ export class LoginInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           const accessToken = event.body.result.access_token;
           const refreshToken = event.body.result.refresh_token;
-          console.log(accessToken);
-          console.log(refreshToken);
-      
-          // if (accessToken) {
-            // this.authService.setAccessToken(accessToken);
-          // }
-          // if (refreshToken) {
-            // this.authService.setRefreshToken(refreshToken);
-          // }
+          // console.log(accessToken);
+          // console.log(refreshToken);
+    
         }
       }),
       map((event: HttpEvent<any>) => {
@@ -71,10 +65,14 @@ export class LoginInterceptor implements HttpInterceptor {
           const responseData: any = event.body;
           const accessToken = event.body.result.access_token;
           const refreshToken = event.body.result.refresh_token;
-          if (responseData && event.status === 200) {
+          if (refreshToken=== this.authService.currentRefreshToken && event.status === 200) {
             this.authService.setAccessToken(accessToken);
             this.authService.login();
             this.router.navigate(['/admin']);
+          }else{
+            this.authService.logout();
+            this.router.navigate(['/signin']);
+
           }
         }
         return event;
